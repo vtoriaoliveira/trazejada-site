@@ -1,28 +1,10 @@
-/**
- * ============================================================
- * TRAJEZADA — API SERVICE LAYER
- * ============================================================
- * Arquivo pronto para integração com backend real.
- * Substitua BASE_URL pela URL da sua API quando disponível.
- * Todos os métodos retornam Promises.
- * ============================================================
- */
 
 const API_CONFIG = {
   BASE_URL: 'https://api.trajezada.com.br/v1', // ⚡ Substitua pela URL da sua API
   TIMEOUT: 10000,
   HEADERS: {
     'Content-Type': 'application/json',
-    // 'Authorization': `Bearer ${localStorage.getItem('token')}`, // Descomente após autenticação
-  },
-};
 
-// ============================================================
-// UTILITÁRIOS
-// ============================================================
-
-/**
- * Faz uma requisição HTTP com timeout e tratamento de erros
  */
 async function apiRequest(endpoint, options = {}) {
   const controller = new AbortController();
@@ -104,46 +86,32 @@ const CategoriesAPI = {
   getById: (id) => apiRequest(`/categories/${id}`),
 };
 
-// ============================================================
-// CARRINHO / PEDIDOS
-// ============================================================
 const OrdersAPI = {
-  /**
-   * Criar pedido
-   * @param {Object} orderData - { customer, items, shipping, payment }
-   */
+
   create: (orderData) =>
     apiRequest('/orders', {
       method: 'POST',
       body: JSON.stringify(orderData),
     }),
 
-  /** Buscar pedido por ID ou código */
   getById: (id) => apiRequest(`/orders/${id}`),
 
-  /** Listar pedidos do cliente (requer auth) */
   getMyOrders: () => apiRequest('/orders/my'),
 
-  /** Cancelar pedido */
   cancel: (id) =>
     apiRequest(`/orders/${id}/cancel`, { method: 'PATCH' }),
 };
 
-// ============================================================
-// CEP / FRETE
-// ============================================================
+
 const ShippingAPI = {
-  /**
-   * Calcular frete
-   * @param {Object} params - { cep, items }
-   */
+ 
   calculate: (params) =>
     apiRequest('/shipping/calculate', {
       method: 'POST',
       body: JSON.stringify(params),
     }),
 
-  /** Buscar endereço por CEP (usando ViaCEP gratuito) */
+
   lookupCEP: async (cep) => {
     const clean = cep.replace(/\D/g, '');
     if (clean.length !== 8) throw new Error('CEP inválido');
@@ -158,11 +126,7 @@ const ShippingAPI = {
 // CUPONS DE DESCONTO
 // ============================================================
 const CouponsAPI = {
-  /**
-   * Validar cupom
-   * @param {string} code - Código do cupom
-   * @param {number} total - Total do pedido
-   */
+ 
   validate: (code, total) =>
     apiRequest('/coupons/validate', {
       method: 'POST',
@@ -170,9 +134,7 @@ const CouponsAPI = {
     }),
 };
 
-// ============================================================
-// NEWSLETTER
-// ============================================================
+
 const NewsletterAPI = {
   subscribe: (email) =>
     apiRequest('/newsletter/subscribe', {
@@ -181,14 +143,8 @@ const NewsletterAPI = {
     }),
 };
 
-// ============================================================
-// MOCK — Simulação Local (usado quando API não está disponível)
-// ============================================================
 const MockAPI = {
-  /**
-   * Simula criação de pedido localmente
-   * Remova quando backend estiver disponível
-   */
+ 
   createOrder: async (orderData) => {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -202,9 +158,7 @@ const MockAPI = {
     });
   },
 
-  /**
-   * Simula validação de cupom
-   */
+
   validateCoupon: async (code) => {
     const coupons = {
       'TRAZE10': { discount: 10, type: 'percent', description: '10% de desconto' },
@@ -222,7 +176,6 @@ const MockAPI = {
   },
 };
 
-// Exportar para uso global
 window.API = {
   products: ProductsAPI,
   categories: CategoriesAPI,
