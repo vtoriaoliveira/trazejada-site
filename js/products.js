@@ -1,10 +1,3 @@
-/**
- * ============================================================
- * TRAJEZADA — DADOS MOCK DE PRODUTOS
- * ============================================================
- * Substitua pela integração com a API real quando disponível.
- * Estrutura compatível com o ProductsAPI.
- * ============================================================
  */
 
 window.MOCK_CATEGORIES = [
