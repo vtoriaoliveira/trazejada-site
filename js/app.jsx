@@ -1,23 +1,13 @@
-/**
- * ============================================================
- * TRAJEZADA — APLICAÇÃO REACT PRINCIPAL
- * ============================================================
- */
+
 
 const { useState, useEffect, useCallback, useRef, useMemo } = React;
 
-// ============================================================
-// HELPERS
-// ============================================================
+
 const formatPrice = (value) =>
   value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-const generateOrderId = () =>
-  'TRZ-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substr(2, 4).toUpperCase();
 
-// ============================================================
-// TOAST SYSTEM
-// ============================================================
+
 function ToastContainer({ toasts, removeToast }) {
   return (
     <div className="toast-container">
@@ -125,9 +115,7 @@ function Navbar({ cartCount, onCartOpen, currentSection, onNavClick }) {
   );
 }
 
-// ============================================================
-// HERO
-// ============================================================
+
 function Hero({ onShopNow }) {
   return (
     <section className="hero" id="home">
@@ -189,9 +177,6 @@ function Hero({ onShopNow }) {
   );
 }
 
-// ============================================================
-// MARQUEE BANNER
-// ============================================================
 function MarqueeBanner() {
   const items = ['NOVA COLEÇÃO', 'STREETWEAR', 'ESTILO ÚNICO', 'FRETE GRÁTIS ACIMA R$299', 'URBAN CULTURE', 'EDIÇÕES LIMITADAS', 'TRAJEZADA 2025'];
   const doubled = [...items, ...items];
@@ -299,9 +284,7 @@ function ProductCard({ product, onAddToCart, onOpenModal }) {
   );
 }
 
-// ============================================================
-// PRODUCT MODAL
-// ============================================================
+
 function ProductModal({ product, onClose, onAddToCart }) {
   const [selectedSize, setSelectedSize] = useState(null);
   const [qty, setQty] = useState(1);
