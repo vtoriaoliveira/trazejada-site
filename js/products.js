@@ -1,6 +1,6 @@
  
 
-export const MOCK_CATEGORIES = [
+window.MOCK_CATEGORIES = [
   { id: 'all', name: 'Todos', slug: 'all', icon: 'fa-grip' },
   { id: 'camisetas', name: 'Camisetas', slug: 'camisetas', icon: 'fa-shirt' },
   { id: 'moletons', name: 'Moletons', slug: 'moletons', icon: 'fa-user' },
@@ -10,7 +10,7 @@ export const MOCK_CATEGORIES = [
   { id: 'acessorios', name: 'Acessórios', slug: 'acessorios', icon: 'fa-gem' },
 ];
 
-export const MOCK_PRODUCTS = [
+window.MOCK_PRODUCTS = [
   {
     id: '1',
     name: 'Camiseta Oversized Urban Flow',
