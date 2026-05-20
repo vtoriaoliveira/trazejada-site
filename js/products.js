@@ -1,4 +1,4 @@
- */
+ 
 
 window.MOCK_CATEGORIES = [
   { id: 'all', name: 'Todos', slug: 'all', icon: 'fa-grip' },
